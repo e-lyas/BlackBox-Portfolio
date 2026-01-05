@@ -1,0 +1,205 @@
+import { useState } from "react";
+import { Send, Check, Loader2 } from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const { toast } = useToast();
+
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validation
+    if (!formData.name.trim()) {
+      toast({
+        title: "Name required",
+        description: "Please enter your name.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!formData.message.trim()) {
+      toast({
+        title: "Message required",
+        description: "Please enter your message.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Decode the webhook URL
+      const webhookUrl = atob(
+        "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ1Nzc5ODQ3NjgxNjU4NDgxNy9LdVdzWl9XSGxndVVuZF9QLWtvYktnZS1VbEtFWmlfM25NNTBHS0lQempOZzVlNWJtbGtTbGtmd18yWVo4OTJQNTVwaA=="
+      );
+
+      const payload = {
+        embeds: [
+          {
+            title: "📬 New Contact Form Submission",
+            color: 0x1a1a1a,
+            fields: [
+              {
+                name: "Name",
+                value: formData.name,
+                inline: true,
+              },
+              {
+                name: "Email",
+                value: formData.email,
+                inline: true,
+              },
+              {
+                name: "Message",
+                value: formData.message,
+              },
+            ],
+            timestamp: new Date().toISOString(),
+            footer: {
+              text: "Portfolio Contact Form",
+            },
+          },
+        ],
+      };
+
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      setIsSuccess(true);
+      setFormData({ name: "", email: "", message: "" });
+      
+      toast({
+        title: "Message sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+
+      // Reset success state after animation
+      setTimeout(() => setIsSuccess(false), 3000);
+    } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later or reach out directly via email.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <section id="contact" className="section-padding">
+      <div className="max-w-xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
+          <p className="text-muted-foreground">
+            Have a project in mind? Let's talk about it.
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="glass-card p-8 space-y-6">
+          <div className="space-y-2">
+            <label htmlFor="name" className="text-sm font-medium text-muted-foreground">
+              Name
+            </label>
+            <Input
+              id="name"
+              type="text"
+              placeholder="Your name"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="email" className="text-sm font-medium text-muted-foreground">
+              Email
+            </label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="message" className="text-sm font-medium text-muted-foreground">
+              Message
+            </label>
+            <Textarea
+              id="message"
+              placeholder="Tell me about your project..."
+              rows={5}
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors resize-none"
+            />
+          </div>
+
+          <Button
+            type="submit"
+            size="lg"
+            disabled={isLoading || isSuccess}
+            className="w-full relative overflow-hidden group"
+          >
+            {isLoading ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Sending...
+              </>
+            ) : isSuccess ? (
+              <>
+                <Check className="w-4 h-4 mr-2" />
+                Message Sent!
+              </>
+            ) : (
+              <>
+                <Send className="w-4 h-4 mr-2 transition-transform group-hover:translate-x-1" />
+                Send Message
+              </>
+            )}
+          </Button>
+        </form>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
