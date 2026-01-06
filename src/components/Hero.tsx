@@ -1,7 +1,27 @@
 import { ArrowDown } from "lucide-react";
 import { Button } from "./ui/button";
+import { useState, useEffect } from "react";
 
 const Hero = () => {
+  const [displayedText, setDisplayedText] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+  const fullName = "e-lyas";
+
+  useEffect(() => {
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex <= fullName.length) {
+        setDisplayedText(fullName.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+        setTimeout(() => setShowCursor(false), 1000);
+      }
+    }, 150);
+
+    return () => clearInterval(typingInterval);
+  }, []);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: "smooth" });
@@ -17,11 +37,16 @@ const Hero = () => {
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-muted/5 rounded-full blur-3xl animate-float animation-delay-300" />
 
       <div className="relative z-10 text-center max-w-4xl mx-auto">
-        {/* Name */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight opacity-0 animate-fade-in-up">
-          <span className="inline-block hover:scale-105 transition-transform duration-300">e</span>
-          <span className="text-muted-foreground">-</span>
-          <span className="inline-block hover:scale-105 transition-transform duration-300">lyas</span>
+        {/* Name with typing animation */}
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight min-h-[1.2em]">
+          <span className="inline-block hover:scale-105 transition-transform duration-300">
+            {displayedText}
+          </span>
+          <span 
+            className={`inline-block w-[3px] h-[0.9em] bg-foreground ml-1 align-middle transition-opacity duration-100 ${
+              showCursor ? "animate-pulse" : "opacity-0"
+            }`}
+          />
         </h1>
 
         {/* Title */}
