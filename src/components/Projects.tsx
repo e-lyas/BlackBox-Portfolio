@@ -16,7 +16,7 @@ const projects: Project[] = [
     description: "A personal project showcasing modern front-end development techniques with clean design and smooth interactions.",
     tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
     liveUrl: "https://e-l-y-a-s-main.vercel.app",
-    codeUrl: "https://github.com/e.l.y.a.s-main",
+    codeUrl: "https://github.com/e-lyas/e.l.y.a.s-main",
   },
 ];
 
