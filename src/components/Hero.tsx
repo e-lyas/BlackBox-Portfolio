@@ -83,10 +83,14 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - animated chevrons */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-500">
-        <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-muted-foreground/50 rounded-full mt-2 animate-bounce" />
+        <div className="flex flex-col items-center gap-1">
+          <span className="text-xs text-muted-foreground/50 uppercase tracking-widest mb-2">Scroll</span>
+          <div className="flex flex-col items-center">
+            <ArrowDown className="w-4 h-4 text-muted-foreground/40 animate-bounce" style={{ animationDelay: "0ms" }} />
+            <ArrowDown className="w-4 h-4 text-muted-foreground/25 animate-bounce -mt-2" style={{ animationDelay: "150ms" }} />
+          </div>
         </div>
       </div>
     </section>
