@@ -19,7 +19,9 @@ const Hero = () => {
       <div className="relative z-10 text-center max-w-4xl mx-auto">
         {/* Name */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight opacity-0 animate-fade-in-up">
-          E
+          <span className="inline-block hover:scale-105 transition-transform duration-300">e</span>
+          <span className="text-muted-foreground">-</span>
+          <span className="inline-block hover:scale-105 transition-transform duration-300">lyas</span>
         </h1>
 
         {/* Title */}
