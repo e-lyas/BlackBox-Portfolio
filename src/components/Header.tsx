@@ -45,7 +45,7 @@ const Header = () => {
           }}
           className="text-lg font-semibold tracking-tight hover:text-foreground/80 transition-colors"
         >
-          JD
+          E
         </a>
 
         {/* Desktop Nav */}

@@ -19,19 +19,19 @@ const Hero = () => {
       <div className="relative z-10 text-center max-w-4xl mx-auto">
         {/* Name */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight opacity-0 animate-fade-in-up">
-          John Doe
+          E
         </h1>
 
         {/* Title */}
         <p className="mt-4 text-xl md:text-2xl text-muted-foreground font-light opacity-0 animate-fade-in-up animation-delay-100">
-          Full Stack Developer & Designer
+          Front-End Developer
         </p>
 
         {/* Tagline */}
         <p className="mt-8 text-lg md:text-xl text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed opacity-0 animate-fade-in-up animation-delay-200">
-          Crafting digital experiences with clean code and thoughtful design.
+          Crafting beautiful, responsive web experiences with modern technologies.
           <br className="hidden md:block" />
-          Building the web, one pixel at a time.
+          Turning ideas into interactive reality.
         </p>
 
         {/* CTA Buttons */}
