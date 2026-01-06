@@ -5,19 +5,24 @@ import Projects from "@/components/Projects";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
+import AudioPlayer from "@/components/AudioPlayer";
 
 const Index = () => {
   return (
     <>
       <Helmet>
-        <title>John Doe | Full Stack Developer & Designer</title>
+        <title>E | Front-End Developer</title>
         <meta
           name="description"
-          content="Full Stack Developer & Designer crafting digital experiences with clean code and thoughtful design. View my portfolio and get in touch."
+          content="Front-End Developer crafting beautiful, responsive web experiences with modern technologies. View my portfolio and get in touch."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://johndoe.dev" />
+        <link rel="canonical" href="https://e-portfolio.dev" />
       </Helmet>
+
+      <CustomCursor />
+      <AudioPlayer />
 
       <div className="min-h-screen bg-background text-foreground">
         <Header />

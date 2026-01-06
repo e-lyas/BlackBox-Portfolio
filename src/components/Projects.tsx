@@ -1,5 +1,6 @@
 import { ExternalLink, Github } from "lucide-react";
 import { Badge } from "./ui/badge";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface Project {
   title: string;
@@ -11,45 +12,11 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "E-Commerce Platform",
-    description: "A modern shopping experience with real-time inventory, secure payments, and seamless checkout flow.",
-    tags: ["React", "Node.js", "Stripe", "PostgreSQL"],
-    liveUrl: "#",
-    codeUrl: "#",
-  },
-  {
-    title: "Task Management App",
-    description: "Collaborative project management tool with drag-and-drop boards, team chat, and analytics.",
-    tags: ["TypeScript", "Next.js", "Prisma", "Tailwind"],
-    liveUrl: "#",
-    codeUrl: "#",
-  },
-  {
-    title: "Weather Dashboard",
-    description: "Beautiful weather visualization with 7-day forecasts, interactive maps, and location search.",
-    tags: ["React", "D3.js", "OpenWeather API"],
-    liveUrl: "#",
-    codeUrl: "#",
-  },
-  {
-    title: "Portfolio Generator",
-    description: "CLI tool that scaffolds beautiful portfolio websites from a simple configuration file.",
-    tags: ["Node.js", "CLI", "Handlebars"],
-    codeUrl: "#",
-  },
-  {
-    title: "Real-time Chat App",
-    description: "End-to-end encrypted messaging with file sharing, voice notes, and group conversations.",
-    tags: ["Socket.io", "React", "MongoDB", "WebRTC"],
-    liveUrl: "#",
-    codeUrl: "#",
-  },
-  {
-    title: "AI Image Generator",
-    description: "Generate stunning artwork using machine learning with style transfer and prompt engineering.",
-    tags: ["Python", "TensorFlow", "React", "FastAPI"],
-    liveUrl: "#",
-    codeUrl: "#",
+    title: "E.L.Y.A.S",
+    description: "A personal project showcasing modern front-end development techniques with clean design and smooth interactions.",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    liveUrl: "https://e-l-y-a-s-main.vercel.app",
+    codeUrl: "https://github.com/e.l.y.a.s-main",
   },
 ];
 
@@ -77,10 +44,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
       </div>
 
       {/* Links */}
-      <div className="flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="flex gap-4">
         {project.liveUrl && (
           <a
             href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <ExternalLink className="w-4 h-4" />
@@ -90,6 +59,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
         {project.codeUrl && (
           <a
             href={project.codeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <Github className="w-4 h-4" />
@@ -102,25 +73,32 @@ const ProjectCard = ({ project }: { project: Project }) => {
 };
 
 const Projects = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: projectsRef, isVisible: projectsVisible } = useScrollAnimation();
+
   return (
     <section id="projects" className="section-padding">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-700 ${
+            headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Selected Work</h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
             A collection of projects that showcase my passion for building elegant solutions.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <div
-              key={project.title}
-              className="opacity-0 animate-fade-in-up"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <ProjectCard project={project} />
-            </div>
+        <div
+          ref={projectsRef}
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-700 delay-200 ${
+            projectsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          {projects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
           ))}
         </div>
       </div>

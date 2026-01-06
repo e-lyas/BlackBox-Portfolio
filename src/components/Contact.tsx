@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
+  const { ref: formRef, isVisible: formVisible } = useScrollAnimation();
 
   const validateEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -123,80 +125,87 @@ const Contact = () => {
   return (
     <section id="contact" className="section-padding">
       <div className="max-w-xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
-          <p className="text-muted-foreground">
-            Have a project in mind? Let's talk about it.
-          </p>
+        <div
+          ref={formRef}
+          className={`transition-all duration-700 ${
+            formVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
+            <p className="text-muted-foreground">
+              Have a project in mind? Let's talk about it.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="glass-card p-8 space-y-6">
+            <div className="space-y-2">
+              <label htmlFor="name" className="text-sm font-medium text-muted-foreground">
+                Name
+              </label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Your name"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium text-muted-foreground">
+                Email
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="message" className="text-sm font-medium text-muted-foreground">
+                Message
+              </label>
+              <Textarea
+                id="message"
+                placeholder="Tell me about your project..."
+                rows={5}
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors resize-none"
+              />
+            </div>
+
+            <Button
+              type="submit"
+              size="lg"
+              disabled={isLoading || isSuccess}
+              className="w-full relative overflow-hidden group"
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Sending...
+                </>
+              ) : isSuccess ? (
+                <>
+                  <Check className="w-4 h-4 mr-2" />
+                  Message Sent!
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4 mr-2 transition-transform group-hover:translate-x-1" />
+                  Send Message
+                </>
+              )}
+            </Button>
+          </form>
         </div>
-
-        <form onSubmit={handleSubmit} className="glass-card p-8 space-y-6">
-          <div className="space-y-2">
-            <label htmlFor="name" className="text-sm font-medium text-muted-foreground">
-              Name
-            </label>
-            <Input
-              id="name"
-              type="text"
-              placeholder="Your name"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium text-muted-foreground">
-              Email
-            </label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="you@example.com"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="message" className="text-sm font-medium text-muted-foreground">
-              Message
-            </label>
-            <Textarea
-              id="message"
-              placeholder="Tell me about your project..."
-              rows={5}
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors resize-none"
-            />
-          </div>
-
-          <Button
-            type="submit"
-            size="lg"
-            disabled={isLoading || isSuccess}
-            className="w-full relative overflow-hidden group"
-          >
-            {isLoading ? (
-              <>
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Sending...
-              </>
-            ) : isSuccess ? (
-              <>
-                <Check className="w-4 h-4 mr-2" />
-                Message Sent!
-              </>
-            ) : (
-              <>
-                <Send className="w-4 h-4 mr-2 transition-transform group-hover:translate-x-1" />
-                Send Message
-              </>
-            )}
-          </Button>
-        </form>
       </div>
     </section>
   );
