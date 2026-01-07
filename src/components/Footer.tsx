@@ -39,7 +39,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Copyright */}
         <p className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} E. All rights reserved.
+          © {new Date().getFullYear()} <span className="text-primary">e</span>-lyas. All rights reserved.
         </p>
 
         {/* Social Links */}
