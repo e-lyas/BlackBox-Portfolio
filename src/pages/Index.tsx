@@ -7,6 +7,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 import AudioPlayer from "@/components/AudioPlayer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
   return (
@@ -23,6 +24,7 @@ const Index = () => {
 
       <CustomCursor />
       <AudioPlayer />
+      <ScrollToTop />
 
       <div className="min-h-screen bg-background text-foreground">
         <Header />
