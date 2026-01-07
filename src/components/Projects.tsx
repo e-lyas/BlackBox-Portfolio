@@ -18,6 +18,16 @@ const projects: Project[] = [
     liveUrl: "https://e-l-y-a-s-main.vercel.app",
     codeUrl: "https://github.com/e-lyas/e.l.y.a.s-main",
   },
+  {
+    title: "Coming Soon",
+    description: "A new project is currently in development. Stay tuned for updates on this exciting upcoming work.",
+    tags: ["In Progress"],
+  },
+  {
+    title: "Coming Soon",
+    description: "Another project is on the way. Check back later to see what's being built.",
+    tags: ["In Progress"],
+  },
 ];
 
 const ProjectCard = ({ project }: { project: Project }) => {
