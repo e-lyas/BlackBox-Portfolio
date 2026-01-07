@@ -1,7 +1,7 @@
 import { Badge } from "./ui/badge";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const profilePhoto = "https://cdn.discordapp.com/avatars/993573969082986638/880181fe0f8b4f9480fefc27489bb5a1.png?size=1024";
+const profilePhoto = "https://icy-silence-30a0.dream66black.workers.dev/";
 
 const skills = [
   "React",
