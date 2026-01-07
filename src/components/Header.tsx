@@ -43,9 +43,11 @@ const Header = () => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className="text-lg font-semibold tracking-tight hover:text-foreground/80 transition-colors"
+          className="text-lg font-semibold tracking-tight hover:text-foreground/80 transition-colors group"
         >
-          E
+          <span className="text-primary">e</span>
+          <span className="text-muted-foreground group-hover:text-foreground transition-colors">.</span>
+          <span className="text-foreground/80 group-hover:text-foreground transition-colors">lyas</span>
         </a>
 
         {/* Desktop Nav */}
