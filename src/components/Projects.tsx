@@ -16,6 +16,7 @@ const projects: Project[] = [
     title: "Personal Portfolio",
     description: "The portfolio you're currently viewing — built with modern technologies, smooth animations, and a clean minimal aesthetic.",
     tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    codeUrl: "https://github.com/e-lyas/Portfolio",
     isCurrent: true,
   },
   {
