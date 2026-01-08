@@ -3,7 +3,7 @@ import { ExternalLink, Github } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-type ProjectType = "All" | "Website" | "Bot" | "In Progress";
+type ProjectType = "All" | "Website" | "Bot" | "API" | "In Progress";
 
 interface Project {
   title: string;
@@ -33,6 +33,13 @@ const projects: Project[] = [
     codeUrl: "https://github.com/e-lyas/e.l.y.a.s-main",
   },
   {
+    title: "Discord PFP Fetcher",
+    description: "A Cloudflare Worker that fetches your latest Discord profile picture and serves it as a dynamic image URL for use on any website.",
+    tags: ["Cloudflare Workers", "JavaScript", "Discord API"],
+    type: "API",
+    codeUrl: "https://github.com/e-lyas/Discord-PFP-Fetcher",
+  },
+  {
     title: "Coming Soon",
     description: "A new project is currently in development. Stay tuned for updates on this exciting upcoming work.",
     tags: ["In Progress"],
@@ -46,15 +53,20 @@ const projects: Project[] = [
   },
 ];
 
-const filterCategories: ProjectType[] = ["All", "Website", "Bot", "In Progress"];
+const filterCategories: ProjectType[] = ["All", "Website", "Bot", "API", "In Progress"];
+
+const getProjectCount = (category: ProjectType): number => {
+  if (category === "All") return projects.length;
+  return projects.filter(p => p.type === category).length;
+};
 
 const ProjectCard = ({ project, index, parentVisible }: { project: Project; index: number; parentVisible: boolean }) => {
   return (
     <div 
       className={`group glass-card p-6 hover-lift transition-all duration-500 ease-out ${
         parentVisible 
-          ? "opacity-100 translate-y-0" 
-          : "opacity-0 translate-y-8"
+          ? "opacity-100 translate-y-0 scale-100" 
+          : "opacity-0 translate-y-8 scale-95"
       } ${project.isCurrent ? "ring-1 ring-foreground/10" : ""}`}
       style={{ 
         transitionDelay: parentVisible ? `${index * 100 + 100}ms` : "0ms"
@@ -129,12 +141,22 @@ const ProjectCard = ({ project, index, parentVisible }: { project: Project; inde
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState<ProjectType>("All");
+  const [isAnimating, setIsAnimating] = useState(false);
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { ref: projectsRef, isVisible: projectsVisible } = useScrollAnimation();
 
   const filteredProjects = activeFilter === "All" 
     ? projects 
     : projects.filter(project => project.type === activeFilter);
+
+  const handleFilterChange = (category: ProjectType) => {
+    if (category === activeFilter) return;
+    setIsAnimating(true);
+    setTimeout(() => {
+      setActiveFilter(category);
+      setTimeout(() => setIsAnimating(false), 50);
+    }, 200);
+  };
 
   return (
     <section id="projects" className="section-padding">
@@ -150,40 +172,54 @@ const Projects = () => {
             A collection of projects that showcase my passion for building elegant solutions.
           </p>
           
-          {/* Filter Buttons */}
+          {/* Filter Buttons with Count Badges */}
           <div className="flex flex-wrap justify-center gap-2">
-            {filterCategories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveFilter(category)}
-                className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
-                  activeFilter === category
-                    ? "bg-foreground text-background shadow-md"
-                    : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+            {filterCategories.map((category) => {
+              const count = getProjectCount(category);
+              return (
+                <button
+                  key={category}
+                  onClick={() => handleFilterChange(category)}
+                  className={`group relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 flex items-center gap-2 ${
+                    activeFilter === category
+                      ? "bg-foreground text-background shadow-md"
+                      : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
+                  }`}
+                >
+                  {category}
+                  <span 
+                    className={`inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1.5 text-xs font-semibold rounded-full transition-all duration-300 ${
+                      activeFilter === category
+                        ? "bg-background/20 text-background"
+                        : "bg-foreground/10 text-muted-foreground group-hover:bg-foreground/15"
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
         <div
           ref={projectsRef}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-300 ${
+            isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"
+          }`}
         >
           {filteredProjects.map((project, index) => (
             <ProjectCard 
               key={project.title + index} 
               project={project} 
               index={index}
-              parentVisible={projectsVisible}
+              parentVisible={projectsVisible && !isAnimating}
             />
           ))}
         </div>
 
-        {filteredProjects.length === 0 && (
-          <div className="text-center py-12 text-muted-foreground">
+        {filteredProjects.length === 0 && !isAnimating && (
+          <div className="text-center py-12 text-muted-foreground animate-fade-in">
             No projects in this category yet.
           </div>
         )}
