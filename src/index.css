@@ -6,42 +6,47 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 0 0% 10%;
+    --background: 40 20% 96%;
+    --foreground: 0 0% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: 0 0% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover-foreground: 0 0% 15%;
 
-    --primary: 0 0% 10%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 0 0% 15%;
+    --primary-foreground: 40 20% 96%;
 
-    --secondary: 0 0% 92%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 40 10% 92%;
+    --secondary-foreground: 0 0% 15%;
 
-    --muted: 0 0% 90%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 40 8% 88%;
+    --muted-foreground: 0 0% 35%;
 
-    --accent: 0 0% 85%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 40 6% 82%;
+    --accent-foreground: 0 0% 15%;
 
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 85%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 40%;
+    --border: 40 10% 85%;
+    --input: 40 8% 90%;
+    --ring: 0 0% 35%;
 
     --radius: 0.75rem;
 
     /* Custom design tokens */
-    --glass-bg: 0 0% 95%;
-    --glass-border: 0 0% 85%;
+    --glass-bg: 40 15% 97%;
+    --glass-border: 40 10% 88%;
     --success: 142 70% 45%;
-    --gradient-start: 0 0% 95%;
-    --gradient-end: 0 0% 98%;
+    --gradient-start: 40 15% 95%;
+    --gradient-end: 40 20% 98%;
+    
+    /* Light mode shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.08);
+    --shadow-card: 0 2px 12px -2px hsl(0 0% 0% / 0.06), 0 4px 24px -4px hsl(0 0% 0% / 0.04);
+    --shadow-hover: 0 8px 32px -8px hsl(0 0% 0% / 0.12);
   }
 
   .dark {
@@ -79,6 +84,11 @@
     --success: 142 70% 45%;
     --gradient-start: 0 0% 15%;
     --gradient-end: 0 0% 10%;
+    
+    /* Dark mode shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.4);
+    --shadow-card: 0 2px 12px -2px hsl(0 0% 0% / 0.3), 0 4px 24px -4px hsl(0 0% 0% / 0.2);
+    --shadow-hover: 0 8px 32px -8px hsl(0 0% 0% / 0.5);
   }
 }
 
@@ -99,7 +109,12 @@
 
 @layer components {
   .glass-card {
-    @apply bg-card/50 backdrop-blur-xl border border-border/50 rounded-xl;
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
+    box-shadow: var(--shadow-card);
+  }
+
+  .glass-card:hover {
+    box-shadow: var(--shadow-hover);
   }
 
   .text-gradient {
@@ -107,7 +122,12 @@
   }
 
   .hover-lift {
-    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/20;
+    @apply transition-all duration-300 ease-out hover:-translate-y-1;
+    box-shadow: var(--shadow-card);
+  }
+
+  .hover-lift:hover {
+    box-shadow: var(--shadow-hover);
   }
 
   .fade-in-up {
@@ -116,6 +136,25 @@
 
   .section-padding {
     @apply py-24 md:py-32 px-6 md:px-12;
+  }
+
+  /* Experience card styling */
+  .experience-card {
+    @apply relative p-5 rounded-xl bg-card/60 backdrop-blur-sm border border-border/30 transition-all duration-300;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .experience-card:hover {
+    @apply border-border/60;
+    box-shadow: var(--shadow-hover);
+  }
+
+  .experience-card:hover .experience-role {
+    @apply text-foreground;
+  }
+
+  .experience-card:hover .experience-company {
+    @apply text-muted-foreground;
   }
 }
 
