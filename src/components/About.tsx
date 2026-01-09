@@ -24,7 +24,7 @@ const experiences = [
     year: "2025 – Present", 
     role: "Multidisciplinary Development", 
     company: "Full-Stack Focus",
-    description: "Expanding toward full-stack capability: building web apps, bots, APIs, and Chrome extensions. Emphasis on reliable implementations, reusable patterns, and rapid prototyping to turn ideas into production-ready tools."
+    description: "Expanding toward full-stack capability: building web apps, bots, APIs, and Firefox extensions. Emphasis on reliable implementations, reusable patterns, and rapid prototyping to turn ideas into production-ready tools."
   },
   { 
     year: "2024 – 2025", 
