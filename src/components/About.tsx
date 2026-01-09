@@ -14,7 +14,7 @@ const skills = [
   "Tailwind CSS",
   "Vite",
   "REST APIs",
-  "Chrome Extensions",
+  "Firefox Extensions",
   "Discord Bots",
   "Git",
 ];
