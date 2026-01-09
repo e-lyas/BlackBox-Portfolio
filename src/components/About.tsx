@@ -19,22 +19,22 @@ const skills = [
 
 const experiences = [
   { 
-    year: "2023 - Present", 
-    role: "Front-End Developer", 
-    company: "Freelance",
-    description: "Building modern web applications with React and TypeScript"
+    year: "2025 – Present", 
+    role: "Multidisciplinary Development", 
+    company: "Full-Stack Focus",
+    description: "Expanding toward full-stack capability: building web apps, bots, APIs, and Chrome extensions. Emphasis on reliable implementations, reusable patterns, and rapid prototyping to turn ideas into production-ready tools."
   },
   { 
-    year: "2022 - 2023", 
-    role: "Junior Front-End Developer", 
-    company: "Web Studio",
-    description: "Developed responsive interfaces and collaborated on client projects"
+    year: "2024 – 2025", 
+    role: "Project-driven Growth", 
+    company: "Independent Development",
+    description: "Moved from tutorials to independent projects. Focused on polished front-end interfaces and practical Node.js usage. Integrated external APIs and improved code organization, accessibility, and responsive behaviour across devices."
   },
   { 
-    year: "2021 - 2022", 
-    role: "Web Development Intern", 
-    company: "Tech Startup",
-    description: "Learned modern development practices and contributed to team projects"
+    year: "2023 – 2024", 
+    role: "Foundations", 
+    company: "Self-Study",
+    description: "Began learning web development through self-study (YouTube, documentation, targeted search). Mastered the core building blocks: HTML, CSS, JavaScript. Built small, functional projects to practice DOM manipulation, event handling, and responsive layout."
   },
 ];
 
