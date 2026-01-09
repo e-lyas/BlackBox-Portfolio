@@ -5,15 +5,17 @@ import { Briefcase, Calendar } from "lucide-react";
 const profilePhoto = "https://icy-silence-30a0.dream66black.workers.dev/";
 
 const skills = [
-  "React",
-  "TypeScript",
   "JavaScript",
+  "TypeScript",
+  "React",
+  "Node.js",
   "HTML5",
   "CSS3",
   "Tailwind CSS",
-  "Next.js",
   "Vite",
-  "Framer Motion",
+  "REST APIs",
+  "Chrome Extensions",
+  "Discord Bots",
   "Git",
 ];
 
@@ -74,11 +76,11 @@ const About = () => {
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">About Me</h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-2xl mx-auto">
-              I'm a passionate Front-End Developer dedicated to creating beautiful, 
-              responsive, and user-friendly web experiences. I specialize in modern 
-              JavaScript frameworks and love bringing designs to life with clean, 
-              efficient code. When I'm not coding, you'll find me exploring new 
-              technologies and pushing creative boundaries.
+              I'm a self-taught developer building toward full-stack capability. 
+              Starting with HTML, CSS, and JavaScript through documentation and 
+              hands-on projects, I've grown into creating web apps, bots, APIs, 
+              and Chrome extensions. I focus on reliable implementations, clean 
+              code, and turning ideas into production-ready tools.
             </p>
           </div>
 
