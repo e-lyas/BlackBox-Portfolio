@@ -33,6 +33,12 @@ const projects: Project[] = [
     codeUrl: "https://github.com/e-lyas/e.l.y.a.s-main",
   },
   {
+    title: "Firefox Extension",
+    description: "A browser extension for Firefox that enhances the browsing experience with useful utilities and customizations.",
+    tags: ["JavaScript", "WebExtensions API", "Firefox"],
+    type: "In Progress",
+  },
+  {
     title: "Discord PFP Fetcher",
     description: "A Cloudflare Worker that fetches your latest Discord profile picture and serves it as a dynamic image URL for use on any website.",
     tags: ["Cloudflare Workers", "JavaScript", "Discord API"],
@@ -40,14 +46,14 @@ const projects: Project[] = [
     codeUrl: "https://github.com/e-lyas/Discord-PFP-Fetcher",
   },
   {
-    title: "Coming Soon",
-    description: "A new project is currently in development. Stay tuned for updates on this exciting upcoming work.",
-    tags: ["In Progress"],
-    type: "In Progress",
+    title: "Discord Bot",
+    description: "A custom Discord bot with moderation tools, utility commands, and interactive features for community servers.",
+    tags: ["Node.js", "Discord.js", "JavaScript"],
+    type: "Bot",
   },
   {
     title: "Coming Soon",
-    description: "Another project is on the way. Check back later to see what's being built.",
+    description: "A new project is currently in development. Stay tuned for updates on this exciting upcoming work.",
     tags: ["In Progress"],
     type: "In Progress",
   },
