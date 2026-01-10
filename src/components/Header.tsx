@@ -55,7 +55,7 @@ const Header = () => {
           : "bg-transparent"
       }`}
     >
-      <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
         {/* Logo */}
         <a
           href="#"
@@ -63,7 +63,7 @@ const Header = () => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className="text-lg font-semibold tracking-tight hover:text-foreground/80 transition-colors group"
+          className="text-base sm:text-lg font-semibold tracking-tight hover:text-foreground/80 transition-colors group"
         >
           <span className="text-primary">e</span>
           <span className="text-muted-foreground group-hover:text-foreground transition-colors">.</span>
@@ -71,7 +71,7 @@ const Header = () => {
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
           {navLinks.map((link) => (
             <button
               key={link.label}
@@ -85,12 +85,13 @@ const Header = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-1.5 sm:gap-2 md:hidden">
           <ThemeToggle />
           <Button
             variant="ghost"
             size="icon"
             onClick={toggleMobileMenu}
+            className="w-9 h-9 sm:w-10 sm:h-10"
           >
             <span className="relative w-5 h-5">
               <X className={`w-5 h-5 absolute inset-0 transition-all duration-200 ${
@@ -113,12 +114,12 @@ const Header = () => {
               : "opacity-100 translate-y-0 animate-fade-in"
           }`}
         >
-          <div className="px-6 py-4 space-y-4">
+          <div className="px-4 sm:px-6 py-3 sm:py-4 space-y-2 sm:space-y-4">
             {navLinks.map((link, index) => (
               <button
                 key={link.label}
                 onClick={() => scrollToSection(link.href)}
-                className={`block w-full text-left text-muted-foreground hover:text-foreground transition-all py-2 ${
+                className={`block w-full text-left text-sm sm:text-base text-muted-foreground hover:text-foreground transition-all py-2 ${
                   isMenuClosing 
                     ? "opacity-0 -translate-x-4" 
                     : "opacity-100 translate-x-0"
