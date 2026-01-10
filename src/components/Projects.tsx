@@ -3,7 +3,7 @@ import { ExternalLink, Github } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-type ProjectType = "All" | "Website" | "Bot" | "API" | "In Progress";
+type ProjectType = "All" | "Website" | "Browser Extension" | "Bot" | "API" | "In Progress";
 
 interface Project {
   title: string;
@@ -36,7 +36,7 @@ const projects: Project[] = [
     title: "Firefox Extension",
     description: "A productivity-focused browser extension for Firefox that streamlines browsing with quick access tools and custom utilities. Built using the WebExtensions API with a focus on performance and user experience.",
     tags: ["JavaScript", "WebExtensions API", "HTML", "CSS", "Firefox"],
-    type: "In Progress",
+    type: "Browser Extension",
   },
   {
     title: "Discord PFP Fetcher",
@@ -53,7 +53,7 @@ const projects: Project[] = [
   },
 ];
 
-const filterCategories: ProjectType[] = ["All", "Website", "Bot", "API", "In Progress"];
+const filterCategories: ProjectType[] = ["All", "Website", "Browser Extension", "Bot", "API"];
 
 const getProjectCount = (category: ProjectType): number => {
   if (category === "All") return projects.length;
