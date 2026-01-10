@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Clock } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -13,6 +13,7 @@ interface Project {
   liveUrl?: string;
   codeUrl?: string;
   isCurrent?: boolean;
+  inProgress?: boolean;
 }
 
 const projects: Project[] = [
@@ -37,6 +38,7 @@ const projects: Project[] = [
     description: "A productivity-focused browser extension for Firefox that streamlines browsing with quick access tools and custom utilities. Built using the WebExtensions API with a focus on performance and user experience.",
     tags: ["JavaScript", "WebExtensions API", "HTML", "CSS", "Firefox"],
     type: "Browser Extension",
+    inProgress: true,
   },
   {
     title: "Discord PFP Fetcher",
@@ -50,20 +52,22 @@ const projects: Project[] = [
     description: "A feature-rich Discord bot with moderation commands, custom utilities, server management tools, and interactive features. Built with Discord.js and actively being expanded with new capabilities.",
     tags: ["Node.js", "Discord.js", "JavaScript", "REST APIs"],
     type: "Bot",
+    inProgress: true,
   },
 ];
 
-const filterCategories: ProjectType[] = ["All", "Website", "Browser Extension", "Bot", "API"];
+const filterCategories: ProjectType[] = ["All", "Website", "Browser Extension", "Bot", "API", "In Progress"];
 
 const getProjectCount = (category: ProjectType): number => {
   if (category === "All") return projects.length;
+  if (category === "In Progress") return projects.filter(p => p.inProgress).length;
   return projects.filter(p => p.type === category).length;
 };
 
 const ProjectCard = ({ project, index, parentVisible }: { project: Project; index: number; parentVisible: boolean }) => {
   return (
     <div 
-      className={`group glass-card p-6 hover-lift transition-all duration-500 ease-out ${
+      className={`group relative glass-card p-6 hover-lift transition-all duration-500 ease-out ${
         parentVisible 
           ? "opacity-100 translate-y-0 scale-100" 
           : "opacity-0 translate-y-8 scale-95"
@@ -72,11 +76,23 @@ const ProjectCard = ({ project, index, parentVisible }: { project: Project; inde
         transitionDelay: parentVisible ? `${index * 100 + 100}ms` : "0ms"
       }}
     >
+      {/* In Progress Overlay Badge */}
+      {project.inProgress && (
+        <div className="absolute top-3 right-3 z-10">
+          <Badge 
+            className="flex items-center gap-1.5 bg-amber-500/90 text-white border-0 shadow-lg animate-pulse"
+          >
+            <Clock className="w-3 h-3" />
+            In Progress
+          </Badge>
+        </div>
+      )}
+      
       <div className="flex items-start justify-between mb-3">
         <h3 className="text-xl font-semibold group-hover:text-foreground/80 transition-colors duration-300">
           {project.title}
         </h3>
-        <div className="flex gap-2">
+        <div className="flex gap-2 mr-24">
           {project.isCurrent && (
             <Badge 
               variant="outline" 
@@ -147,6 +163,8 @@ const Projects = () => {
 
   const filteredProjects = activeFilter === "All" 
     ? projects 
+    : activeFilter === "In Progress"
+    ? projects.filter(project => project.inProgress)
     : projects.filter(project => project.type === activeFilter);
 
   const handleFilterChange = (category: ProjectType) => {
