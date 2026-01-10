@@ -76,11 +76,10 @@ const About = () => {
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">About Me</h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-2xl mx-auto">
-              I'm a self-taught developer building toward full-stack capability. 
-              Starting with HTML, CSS, and JavaScript through documentation and 
-              hands-on projects, I've grown into creating web apps, bots, APIs, 
-              and Chrome extensions. I focus on reliable implementations, clean 
-              code, and turning ideas into production-ready tools.
+              I'm a self-taught developer focused on full-stack development. 
+              Starting from HTML, CSS, and JavaScript, I've evolved into building 
+              web apps, bots, APIs, and browser extensions. I care about clean code, 
+              solid architecture, and transforming ideas into functional, production-ready tools.
             </p>
           </div>
 
