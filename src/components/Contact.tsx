@@ -124,23 +124,23 @@ const Contact = () => {
 
   return (
     <section id="contact" className="section-padding">
-      <div className="max-w-xl mx-auto">
+      <div className="max-w-xl mx-auto px-2 sm:px-0">
         <div
           ref={formRef}
           className={`transition-all duration-700 ${
             formVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
-            <p className="text-muted-foreground">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Get in Touch</h2>
+            <p className="text-sm sm:text-base text-muted-foreground px-2">
               Have a project in mind? Let's talk about it.
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="glass-card p-8 space-y-6">
-            <div className="space-y-2">
-              <label htmlFor="name" className="text-sm font-medium text-muted-foreground">
+          <form onSubmit={handleSubmit} className="glass-card p-5 sm:p-8 space-y-4 sm:space-y-6">
+            <div className="space-y-1.5 sm:space-y-2">
+              <label htmlFor="name" className="text-xs sm:text-sm font-medium text-muted-foreground">
                 Name
               </label>
               <Input
@@ -149,12 +149,12 @@ const Contact = () => {
                 placeholder="Your name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors"
+                className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors text-sm sm:text-base h-10 sm:h-11"
               />
             </div>
 
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium text-muted-foreground">
+            <div className="space-y-1.5 sm:space-y-2">
+              <label htmlFor="email" className="text-xs sm:text-sm font-medium text-muted-foreground">
                 Email
               </label>
               <Input
@@ -163,21 +163,21 @@ const Contact = () => {
                 placeholder="you@example.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors"
+                className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors text-sm sm:text-base h-10 sm:h-11"
               />
             </div>
 
-            <div className="space-y-2">
-              <label htmlFor="message" className="text-sm font-medium text-muted-foreground">
+            <div className="space-y-1.5 sm:space-y-2">
+              <label htmlFor="message" className="text-xs sm:text-sm font-medium text-muted-foreground">
                 Message
               </label>
               <Textarea
                 id="message"
                 placeholder="Tell me about your project..."
-                rows={5}
+                rows={4}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors resize-none"
+                className="bg-background/50 border-border/50 focus:border-muted-foreground/50 transition-colors resize-none text-sm sm:text-base min-h-[100px] sm:min-h-[120px]"
               />
             </div>
 
@@ -185,7 +185,7 @@ const Contact = () => {
               type="submit"
               size="lg"
               disabled={isLoading || isSuccess}
-              className="w-full relative overflow-hidden group"
+              className="w-full relative overflow-hidden group h-11 sm:h-12 text-sm sm:text-base"
             >
               {isLoading ? (
                 <>
