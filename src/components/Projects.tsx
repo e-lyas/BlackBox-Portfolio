@@ -34,8 +34,8 @@ const projects: Project[] = [
   },
   {
     title: "Firefox Extension",
-    description: "A browser extension for Firefox that enhances the browsing experience with useful utilities and customizations.",
-    tags: ["JavaScript", "WebExtensions API", "Firefox"],
+    description: "A productivity-focused browser extension for Firefox that streamlines browsing with quick access tools and custom utilities. Built using the WebExtensions API with a focus on performance and user experience.",
+    tags: ["JavaScript", "WebExtensions API", "HTML", "CSS", "Firefox"],
     type: "In Progress",
   },
   {
@@ -47,15 +47,9 @@ const projects: Project[] = [
   },
   {
     title: "Discord Bot",
-    description: "A custom Discord bot with moderation tools, utility commands, and interactive features for community servers.",
-    tags: ["Node.js", "Discord.js", "JavaScript"],
+    description: "A feature-rich Discord bot with moderation commands, custom utilities, server management tools, and interactive features. Built with Discord.js and actively being expanded with new capabilities.",
+    tags: ["Node.js", "Discord.js", "JavaScript", "REST APIs"],
     type: "Bot",
-  },
-  {
-    title: "Coming Soon",
-    description: "A new project is currently in development. Stay tuned for updates on this exciting upcoming work.",
-    tags: ["In Progress"],
-    type: "In Progress",
   },
 ];
 
