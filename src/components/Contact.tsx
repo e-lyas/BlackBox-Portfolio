@@ -56,7 +56,7 @@ const Contact = () => {
 
     try {
       const webhookUrl = atob(
-        "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ1Nzc5ODQ3NjgxNjU4NDgxNy9LdVdzWl9XSGxndVVuZF9QLWtvYktnZS1VbEtFWmlfM25NNTBHS0lQempOZzVlNWJtbGtTbGtmd18yWVo4OTJQNTVwaA=="
+        "PUT IT HERE IN BASE64 AND DONT SHARE IT!"
       );
 
       const payload = {
