@@ -26,19 +26,12 @@ const projects: Project[] = [
     isCurrent: true,
   },
   {
-    title: "E.L.Y.A.S",
-    description: "A personal project showcasing modern front-end development techniques with clean design and smooth interactions.",
-    tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    title: "Social-Links",
+    description: "A modern, interactive social links website built for creators and developers.",
+    tags: ["HTML", "CSS", "JS"],
     type: "Website",
     liveUrl: "https://e-l-y-a-s-main.vercel.app",
     codeUrl: "https://github.com/e-lyas/e.l.y.a.s-main",
-  },
-  {
-    title: "Firefox Extension",
-    description: "A productivity-focused browser extension for Firefox that streamlines browsing with quick access tools and custom utilities. Built using the WebExtensions API with a focus on performance and user experience.",
-    tags: ["JavaScript", "WebExtensions API", "HTML", "CSS", "Firefox"],
-    type: "Browser Extension",
-    inProgress: true,
   },
   {
     title: "Discord PFP Fetcher",
@@ -46,6 +39,13 @@ const projects: Project[] = [
     tags: ["Cloudflare Workers", "JavaScript", "Discord API"],
     type: "API",
     codeUrl: "https://github.com/e-lyas/Discord-PFP-Fetcher",
+  },
+  {
+    title: "Firefox Extension",
+    description: "A productivity-focused browser extension for Firefox that streamlines browsing with quick access tools and custom utilities. Built using the WebExtensions API with a focus on performance and user experience.",
+    tags: ["JavaScript", "WebExtensions API", "HTML", "CSS", "Firefox"],
+    type: "Browser Extension",
+    inProgress: true,
   },
   {
     title: "Discord Bot",
