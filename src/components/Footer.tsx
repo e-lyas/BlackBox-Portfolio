@@ -23,12 +23,12 @@ const InstagramIcon = () => (
 const socialLinks = [
   {
     icon: DiscordIcon,
-    href: "https://discord.com",
+    href: "https://discordapp.com/users/993573969082986638",
     label: "Discord",
   },
   {
     icon: InstagramIcon,
-    href: "https://instagram.com",
+    href: "https://www.instagram.com/e_l.y.a.s",
     label: "Instagram",
   },
 ];
