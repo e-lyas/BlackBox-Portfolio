@@ -45,7 +45,7 @@ This project is **free and open-source**, built with modern technologies, smooth
 
 ## 🌐 Live Demo
 
-black-box-portfolio.vercel.app
+https://black-box-portfolio.vercel.app
 
 ---
 
