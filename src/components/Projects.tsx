@@ -22,7 +22,7 @@ const projects: Project[] = [
     description: "The portfolio you're currently viewing — built with modern technologies, smooth animations, and a clean minimal aesthetic.",
     tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
     type: "Website",
-    codeUrl: "https://github.com/e-lyas/Portfolio",
+    codeUrl: "https://github.com/e-lyas/BlackBox-Portfolio",
     isCurrent: true,
   },
   {
