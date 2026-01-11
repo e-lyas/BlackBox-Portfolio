@@ -55,7 +55,6 @@ const Contact = () => {
     setIsLoading(true);
 
     try {
-      // Decode the webhook URL
       const webhookUrl = atob(
         "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ1Nzc5ODQ3NjgxNjU4NDgxNy9LdVdzWl9XSGxndVVuZF9QLWtvYktnZS1VbEtFWmlfM25NNTBHS0lQempOZzVlNWJtbGtTbGtmd18yWVo4OTJQNTVwaA=="
       );
