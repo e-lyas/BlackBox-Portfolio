@@ -1,12 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import { Volume2, VolumeX, Music } from "lucide-react";
 import { Button } from "./ui/button";
+import { Slider } from "./ui/slider";
 
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [showPrompt, setShowPrompt] = useState(true);
+  const [showVolume, setShowVolume] = useState(false);
+  const [volume, setVolume] = useState(30);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   // Chill lofi background music
@@ -15,7 +18,7 @@ const AudioPlayer = () => {
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
-      audio.volume = 0.3;
+      audio.volume = volume / 100;
       audio.loop = true;
 
       const handleCanPlay = () => setIsLoaded(true);
@@ -26,6 +29,14 @@ const AudioPlayer = () => {
       };
     }
   }, []);
+
+  // Update volume when slider changes
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.volume = volume / 100;
+    }
+  }, [volume]);
 
   // Hide prompt after 8 seconds
   useEffect(() => {
@@ -52,6 +63,10 @@ const AudioPlayer = () => {
     }
   };
 
+  const handleVolumeChange = (value: number[]) => {
+    setVolume(value[0]);
+  };
+
   return (
     <>
       <audio ref={audioRef} src={audioSrc} preload="auto" />
@@ -62,8 +77,29 @@ const AudioPlayer = () => {
           <div className="bg-card/90 backdrop-blur-xl border border-border/50 rounded-lg px-4 py-2 text-sm text-foreground shadow-lg">
             <div className="flex items-center gap-2">
               <Music className="w-4 h-4 text-primary animate-pulse" />
-              <span>Click to play ambient music</span>
+              <span>Click to play music</span>
             </div>
+            <div className="absolute -bottom-2 right-6 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-card/90" />
+          </div>
+        </div>
+      )}
+
+      {/* Volume slider popup */}
+      {showVolume && isPlaying && (
+        <div className="fixed bottom-20 right-6 z-50 animate-fade-in">
+          <div className="bg-card/90 backdrop-blur-xl border border-border/50 rounded-lg px-4 py-3 shadow-lg">
+            <div className="flex items-center gap-3">
+              <VolumeX className="w-4 h-4 text-muted-foreground" />
+              <Slider
+                value={[volume]}
+                onValueChange={handleVolumeChange}
+                max={100}
+                step={1}
+                className="w-24"
+              />
+              <Volume2 className="w-4 h-4 text-foreground" />
+            </div>
+            <div className="text-xs text-muted-foreground text-center mt-1">{volume}%</div>
             <div className="absolute -bottom-2 right-6 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-card/90" />
           </div>
         </div>
@@ -73,6 +109,8 @@ const AudioPlayer = () => {
         variant="ghost"
         size="icon"
         onClick={togglePlay}
+        onMouseEnter={() => setShowVolume(true)}
+        onMouseLeave={() => setShowVolume(false)}
         className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-card/80 backdrop-blur-xl border border-border/50 hover:bg-secondary/50 transition-all duration-300 ${
           isLoaded ? "opacity-100" : "opacity-50"
         } ${!hasInteracted && isLoaded ? "animate-pulse" : ""}`}
