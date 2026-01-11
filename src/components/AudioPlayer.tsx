@@ -9,8 +9,8 @@ const AudioPlayer = () => {
   const [showPrompt, setShowPrompt] = useState(true);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Chill ambient music - using a royalty-free lofi track
-  const audioSrc = "https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3";
+  // Chill lofi background music
+  const audioSrc = "/audio/lofi-beat-chill-7373.mp3";
 
   useEffect(() => {
     const audio = audioRef.current;
