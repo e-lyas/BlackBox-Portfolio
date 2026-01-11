@@ -78,7 +78,7 @@ const ProjectCard = ({ project, index, parentVisible }: { project: Project; inde
     >
       {/* In Progress Overlay Badge */}
       {project.inProgress && (
-        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-10">
+        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-auto md:right-auto md:relative md:order-first md:mb-3 z-10">
           <Badge 
             className="flex items-center gap-1 sm:gap-1.5 bg-amber-500/90 text-white border-0 shadow-lg animate-pulse text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-1"
           >
@@ -88,8 +88,8 @@ const ProjectCard = ({ project, index, parentVisible }: { project: Project; inde
         </div>
       )}
       
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-0 mb-3">
-        <h3 className="text-lg sm:text-xl font-semibold group-hover:text-foreground/80 transition-colors duration-300 pr-20 sm:pr-0">
+      <div className={`flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-0 mb-3 ${project.inProgress ? 'pr-24 sm:pr-28 md:pr-0' : ''}`}>
+        <h3 className="text-lg sm:text-xl font-semibold group-hover:text-foreground/80 transition-colors duration-300">
           {project.title}
         </h3>
         <div className="flex flex-wrap gap-1.5 sm:gap-2 sm:ml-4 sm:shrink-0">
