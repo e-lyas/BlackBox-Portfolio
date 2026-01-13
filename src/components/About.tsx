@@ -2,7 +2,7 @@ import { Badge } from "./ui/badge";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Briefcase, Calendar } from "lucide-react";
 
-const profilePhoto = "https://icy-silence-30a0.dream66black.workers.dev/";
+const profilePhoto = "https://discordpfpfetcher6767jy45hg8h7h6hr.dream66black.workers.dev/";
 
 const skills = [
   "JavaScript",
